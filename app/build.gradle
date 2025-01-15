@@ -1,0 +1,110 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 32
+    //签名配置
+    signingConfigs {
+        //正式
+        release {
+            //指定签名文件的别名
+            keyAlias 'recycling'
+
+            //指定签名文件的别名配对密码
+            keyPassword '123456'
+
+            //签名文件路径
+            storeFile file('keystore/release.keystore')
+
+            //签名文件的密码
+            storePassword '123456'
+        }
+        //测试
+        debug {
+            //签名文件路径
+            storeFile file('keystore/debug.keystore')
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.cj.mobile.myapplication"
+        minSdkVersion 28
+        targetSdkVersion 32
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+
+        debug.setRoot('build-types/debug')
+        release.setRoot('build-types/release')
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    // Specify tflite file should not be compressed for the app apk
+    aaptOptions {
+        noCompress "tflite"
+    }
+
+    //如果使用aar必须这么写
+    repositories {
+        //配置使用本地文件夹
+        flatDir {
+            dirs 'libs'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.6.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    // 定位
+    implementation files('libs/wayz-sdk-android-4.2.0.jar')
+
+    // opencv
+    implementation project(':opencv-sdk')
+
+    // 相机
+    implementation "androidx.camera:camera-core:1.0.1"
+    implementation "androidx.camera:camera-camera2:1.1.0-alpha06"
+    implementation "androidx.camera:camera-lifecycle:1.0.0-alpha30"
+    implementation "androidx.camera:camera-view:1.0.0-alpha30"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    // TensorFlow Lite 核心库
+    implementation 'org.tensorflow:tensorflow-lite:2.5.0'
+    // TensorFlow Lite GPU 加速库（可选，需要 GPU 支持）
+//    implementation 'org.tensorflow:tensorflow-lite-gpu:2.4.0'
+    implementation(name: 'tensorflow-lite-gpu-2.9.0', ext: 'aar')
+    implementation(name: 'tensorflow-lite-gpu-delegate-plugin-0.4.0', ext: 'aar')
+    // TensorFlow Lite 支持库，包含一些实用工具
+//    implementation 'org.tensorflow:tensorflow-lite-support:0.4.2'
+    implementation(name: 'tensorflow-lite-support-0.2.0', ext: 'aar')
+    // 一个在设备上集成TFLite模型的库，用于流行的视觉任务相关的机器学习用例
+//    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.4.0'
+    implementation(name: 'tensorflow-lite-task-vision-0.4.0', ext: 'aar')
+
+    implementation 'com.google.mlkit:image-labeling:17.0.5'
+    implementation(name: 'tensorflow-lite-task-base-0.4.0', ext: 'aar')
+}

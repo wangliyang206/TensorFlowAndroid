@@ -1,0 +1,2 @@
+ninja: Entering directory `E:\AndroidStudioGit\TensorFlowAndroid\opencv-sdk\.cxx\cmake\debug\armeabi-v7a'
+ninja: no work to do.

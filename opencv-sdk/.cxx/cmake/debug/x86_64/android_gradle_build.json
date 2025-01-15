@@ -1,0 +1,42 @@
+{
+  "stringTable": {
+    "0": "E:/AndroidStudioGit/TensorFlowAndroid/opencv-sdk/.cxx/cmake/debug/x86_64",
+    "1": "--target=x86_64-none-linux-android21 --gcc-toolchain=F:/AndroidSDK/ndk/20.0.5594570/toolchains/llvm/prebuilt/windows-x86_64 --sysroot=F:/AndroidSDK/ndk/20.0.5594570/toolchains/llvm/prebuilt/windows-x86_64/sysroot -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security -O0 -fno-limit-debug-info -fPIC"
+  },
+  "buildFiles": [
+    "F:\\AndroidSDK\\ndk\\20.0.5594570\\build\\cmake\\android.toolchain.cmake",
+    "E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\libcxx_helper\\CMakeLists.txt",
+    "F:\\AndroidSDK\\ndk\\20.0.5594570\\build\\cmake\\platforms.cmake"
+  ],
+  "cleanCommands": [
+    "F:\\AndroidSDK\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\.cxx\\cmake\\debug\\x86_64\" clean"
+  ],
+  "buildTargetsCommand": "F:\\AndroidSDK\\cmake\\3.10.2.4988404\\bin\\ninja.exe  -C \"E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\.cxx\\cmake\\debug\\x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "libraries": {
+    "opencv_jni_shared-Debug-x86_64": {
+      "buildCommand": "F:\\AndroidSDK\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\.cxx\\cmake\\debug\\x86_64\" opencv_jni_shared",
+      "buildType": "debug",
+      "toolchain": "3299946148",
+      "abi": "x86_64",
+      "artifactName": "opencv_jni_shared",
+      "files": [
+        {
+          "src": "E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\libcxx_helper\\dummy.cpp",
+          "flagsOrdinal": 1,
+          "workingDirectoryOrdinal": 0
+        }
+      ],
+      "headers": [],
+      "output": "E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\.cxx\\cmake\\debug\\x86_64\\libopencv_jni_shared.a"
+    }
+  },
+  "toolchains": {
+    "3299946148": {
+      "cppCompilerExecutable": "F:\\AndroidSDK\\ndk\\20.0.5594570\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": [
+    "cpp"
+  ]
+}
