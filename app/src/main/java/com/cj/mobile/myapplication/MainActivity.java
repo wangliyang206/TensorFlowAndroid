@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         findViewById(R.id.btn_main_location).setOnClickListener(this);
         findViewById(R.id.btn_main_objectdetector).setOnClickListener(this);
+        findViewById(R.id.btn_main_imageclassifier).setOnClickListener(this);
     }
 
     @Override
@@ -40,7 +41,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(new Intent(this, LocationActivity.class));
                 break;
             case R.id.btn_main_objectdetector:                                                      // 物体探测器功能
-                startActivity(new Intent(this, FingerCountActivity.class));
+                startActivity(new Intent(this, ObjectDetectorActivity.class));
+                break;
+            case R.id.btn_main_imageclassifier:                                                     // 图像分类功能
+                startActivity(new Intent(this, ImageClassifierActivity.class));
                 break;
         }
     }

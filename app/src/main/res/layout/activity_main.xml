@@ -23,4 +23,14 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btn_main_imageclassifier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="图像分类器功能"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
 </LinearLayout>

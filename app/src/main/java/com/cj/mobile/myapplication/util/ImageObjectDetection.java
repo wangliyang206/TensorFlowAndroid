@@ -49,7 +49,6 @@ public class ImageObjectDetection implements ImageAnalysis.Analyzer {
     private RecognitionListener listener;
 
     // 物体探测器 模型
-//    private static final String MODEL_PATH = "mobilenet_v3.tflite";
     private final static String MODEL_PATH = "ssd_mobilenet_v1.tflite";
 
     // 显示的最大结果数

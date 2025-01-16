@@ -171,7 +171,6 @@
       "project": {
         "compilerSettingsCacheFolder": "E:\\AndroidStudioGit\\TensorFlowAndroid\\.cxx",
         "cxxFolder": "E:\\AndroidStudioGit\\TensorFlowAndroid\\.cxx",
-        "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
@@ -194,8 +193,10 @@
     "objFolder": "E:\\AndroidStudioGit\\TensorFlowAndroid\\opencv-sdk\\build\\intermediates\\cmake\\debug\\obj",
     "variantName": "debug",
     "validAbiList": [
+      "ARMEABI_V7A",
       "ARM64_V8A",
-      "ARMEABI_V7A"
+      "X86",
+      "X86_64"
     ]
   }
 }
