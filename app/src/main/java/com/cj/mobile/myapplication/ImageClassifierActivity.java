@@ -39,7 +39,11 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 /**
- * 图像分类器
+ * 图像分类
+ *
+ * 用途：图像分类的主要用途是识别图像中的主要对象或场景，并将其归类到预定义的类别中。
+ * 功能：给定一张图像，图像分类算法会分析图像内容，并输出一个或多个类别标签，表示图像中包含的对象或场景。例如，算法可能会将一张猫的图像归类为“猫”这个类别。
+ * 应用：图像分类常用于识别整个图像的内容，例如在照片中识别物体、人物或场景。它广泛应用于各种领域，如社交媒体内容过滤、医学影像分析、自动驾驶中的路标识别等。
  */
 public class ImageClassifierActivity extends AppCompatActivity {
     private final String TAG = "ImageClassifierActivity";
