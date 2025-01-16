@@ -4,6 +4,7 @@
     package="com.cj.mobile.myapplication">
 
     <uses-permission android:name="android.permission.CAMERA" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
@@ -42,16 +43,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-
-        <activity
-            android:name=".FingerCountActivity"
-            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -59,11 +50,17 @@
             </intent-filter>
         </activity>
 
-        <service android:name="com.wayz.location.WzService"/>
+        <activity
+            android:name=".FingerCountActivity"
+            android:exported="true" />
+
+        <activity android:name=".LocationActivity" />
+
+        <service android:name="com.wayz.location.WzService" />
 
         <meta-data
             android:name="com.wayz.location.appkey"
-            android:value="Hc7uCnswO8TpBeyx9aZc2Vf8I8w9IoEk"/>
+            android:value="Hc7uCnswO8TpBeyx9aZc2Vf8I8w9IoEk" />
     </application>
 
 </manifest>
