@@ -44,7 +44,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * 目标检测
- *
+ * <p>
  * 用途：目标检测不仅要识别图像中的主要对象，还要确定这些对象在图像中的位置。
  * 功能：与图像分类不同，目标检测算法会输出一个或多个类别标签，以及每个对象所在的边界框的坐标。这使得算法能够在图像中定位并标识多个对象。
  * 应用：目标检测广泛应用于自动驾驶、视频监控、人脸检测等领域。在这些应用中，除了识别对象类别外，还需要知道它们在图像中的具体位置。例如，在自动驾驶中，目标检测算法可以识别出前方的车辆、行人和其他障碍物，并提供它们的位置信息，以帮助车辆做出正确的驾驶决策。
@@ -60,6 +60,15 @@ public class ObjectDetectorActivity extends AppCompatActivity {
     private long lastAnalyzeTime = 0;
     // 分析的间隔时间
     private long ANALYZE_INTERVAL = 0;
+    private final Object task = new Object();
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        synchronized (task) {
+            objectDetectorHelper.clearObjectDetector();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +122,9 @@ public class ObjectDetectorActivity extends AppCompatActivity {
         }, ContextCompat.getMainExecutor(this));
     }
 
+    /**
+     * 绑定预览
+     */
     private void bindPreview(ProcessCameraProvider cameraProvider) {
         Preview preview = new Preview.Builder()
 //                .setTargetResolution(new Size(640, 480))
