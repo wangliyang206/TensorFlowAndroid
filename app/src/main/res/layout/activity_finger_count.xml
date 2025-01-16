@@ -44,8 +44,13 @@
         android:id="@+id/recognitionResults"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/translucent_20"
         android:layout_gravity="bottom"
+        android:background="@color/translucent_20"
         android:orientation="vertical"
         app:layoutManager="LinearLayoutManager" />
+
+    <ImageView
+        android:id="@+id/image_fingercount_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </merge>

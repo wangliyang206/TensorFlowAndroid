@@ -4,11 +4,16 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.ImageFormat;
+import android.graphics.Paint;
 import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.YuvImage;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -61,6 +66,8 @@ public class ObjectDetectorActivity extends AppCompatActivity {
     // 分析的间隔时间
     private long ANALYZE_INTERVAL = 0;
     private final Object task = new Object();
+    // 显示轮廓标记
+    private ImageView imageView;
 
     @Override
     protected void onDestroy() {
@@ -77,6 +84,7 @@ public class ObjectDetectorActivity extends AppCompatActivity {
 
         previewView = findViewById(R.id.viewFinder);
         resultRecyclerView = findViewById(R.id.recognitionResults);
+        imageView = findViewById(R.id.image_fingercount_view);
 
         // 请求相机权限
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
@@ -150,23 +158,54 @@ public class ObjectDetectorActivity extends AppCompatActivity {
 
             @Override
             public void onResults(List<Detection> results, long inferenceTime, int imageHeight, int imageWidth) {
+
                 List<Recognition> items = new ArrayList<>();
-                for (Detection detection : results) {
-                    StringBuilder title = new StringBuilder();
-                    for (Category category : detection.getCategories()) {
-                        // 图片中的识别结果
-                        title.append(category.getLabel());
-                        title.append("(").append(category.getScore()).append(")");
-                        title.append(";");
+                if (results != null && results.size() > 0) {
 
-                        // 列表中的识别结果
-                        Recognition info = new Recognition();
-                        info.setTitle(category.getLabel());
-                        info.setConfidence(category.getScore());
-                        items.add(info);
+                    // 假设你已经有一个 Canvas 对象 canvas
+                    // 创建一个 Bitmap 对象
+                    Bitmap bitmap = Bitmap.createBitmap(imageWidth, imageHeight, Bitmap.Config.ARGB_8888);
+
+                    // 创建一个 Canvas 对象
+                    Canvas canvas = new Canvas(bitmap);
+                    // 将原始 Canvas 的内容绘制到新的 Canvas 上
+                    canvas.drawBitmap(bitmap, 0, 0, null);
+                    imageView.setImageBitmap(bitmap);
+
+                    for (Detection detection : results) {
+
+                        // 获取检测到的物体的位置和标签
+                        RectF bBox = detection.getBoundingBox();
+
+                        Paint paint = new Paint();
+                        paint.setColor(Color.GREEN);
+                        paint.setStyle(Paint.Style.STROKE);
+                        paint.setStrokeWidth(5);
+                        canvas.drawRect(bBox.left, bBox.top, bBox.right, bBox.bottom, paint);
+
+                        paint.setStrokeWidth(2);
+                        paint.setTextSize(30);
+
+                        StringBuilder title = new StringBuilder();
+                        for (Category category : detection.getCategories()) {
+                            // 组织文字识别结果
+                            title.append(category.getLabel());
+                            title.append("(").append(category.getScore()).append(")");
+                            title.append(";");
+
+                            // 列表中的识别结果
+                            Recognition info = new Recognition();
+                            info.setTitle(category.getLabel());
+                            info.setConfidence(category.getScore());
+                            items.add(info);
+                        }
+
+                        Log.d(TAG, "###识别结果：" + title);
+                        canvas.drawText(title.toString(), bBox.left, bBox.top - 10, paint);
+
                     }
-
-                    Log.d(TAG, "###识别结果：" + title);
+                } else {
+                    imageView.setImageBitmap(null);
                 }
 
                 runOnUiThread(() -> {
@@ -183,7 +222,8 @@ public class ObjectDetectorActivity extends AppCompatActivity {
                 Log.d(TAG, "#####  TFLite 执行检测逻辑！");
 
                 int imageRotation = image.getImageInfo().getRotationDegrees();
-                objectDetectorHelper.detect(imageProxyToBitmap(image), imageRotation);
+                Bitmap mBitmap = imageProxyToBitmap(image);
+                objectDetectorHelper.detect(mBitmap, imageRotation);
 
                 lastAnalyzeTime = currentTime; // 更新上一次检测时间
             }
