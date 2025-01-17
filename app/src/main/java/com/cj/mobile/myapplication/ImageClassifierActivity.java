@@ -74,8 +74,8 @@ public class ImageClassifierActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finger_count);
 
-        previewView = findViewById(R.id.viewFinder);
-        resultRecyclerView = findViewById(R.id.recognitionResults);
+        previewView = findViewById(R.id.view_fingercount_finder);
+        resultRecyclerView = findViewById(R.id.view_fingercount_recognitionResults);
 
         // 请求相机权限
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED

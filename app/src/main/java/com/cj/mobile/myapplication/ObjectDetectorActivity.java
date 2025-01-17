@@ -82,8 +82,8 @@ public class ObjectDetectorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_finger_count);
 
-        previewView = findViewById(R.id.viewFinder);
-        resultRecyclerView = findViewById(R.id.recognitionResults);
+        previewView = findViewById(R.id.view_fingercount_finder);
+        resultRecyclerView = findViewById(R.id.view_fingercount_recognitionResults);
         imageView = findViewById(R.id.image_fingercount_view);
 
         // 请求相机权限
