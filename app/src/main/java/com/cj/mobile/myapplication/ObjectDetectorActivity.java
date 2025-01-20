@@ -149,7 +149,7 @@ public class ObjectDetectorActivity extends AppCompatActivity {
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                 .build();
 
-        objectDetectorHelper = new ObjectDetectorHelper(0.5f, 2, 3, 0, 0, this, new ObjectDetectorHelper.DetectorListener() {
+        objectDetectorHelper = new ObjectDetectorHelper(0.5f, 5, 5, 0, 0, this, new ObjectDetectorHelper.DetectorListener() {
 
             @Override
             public void onError(String error) {

@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.btn_main_location).setOnClickListener(this);
         findViewById(R.id.btn_main_objectdetector).setOnClickListener(this);
         findViewById(R.id.btn_main_imageclassifier).setOnClickListener(this);
+        findViewById(R.id.btn_main_humanjoints).setOnClickListener(this);
     }
 
     @Override
@@ -45,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             case R.id.btn_main_imageclassifier:                                                     // 图像分类功能
                 startActivity(new Intent(this, ImageClassifierActivity.class));
+                break;
+            case R.id.btn_main_humanjoints:                                                         // 人脸关节功能
+                startActivity(new Intent(this, HumanJointsActivity.class));
                 break;
         }
     }

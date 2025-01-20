@@ -58,6 +58,10 @@
             android:name=".ImageClassifierActivity"
             android:exported="true" />
 
+        <activity
+            android:name=".HumanJointsActivity"
+            android:exported="true" />
+
         <activity android:name=".LocationActivity" />
 
         <service android:name="com.wayz.location.WzService" />
