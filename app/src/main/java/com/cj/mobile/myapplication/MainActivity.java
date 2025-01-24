@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_main_imageclassifier:                                                     // 图像分类功能
                 startActivity(new Intent(this, ImageClassifierActivity.class));
                 break;
-            case R.id.btn_main_humanjoints:                                                         // 人脸关节功能
+            case R.id.btn_main_humanjoints:                                                         // 人脸捕捉功能
                 startActivity(new Intent(this, HumanJointsActivity.class));
                 break;
         }

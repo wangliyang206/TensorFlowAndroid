@@ -104,7 +104,10 @@ dependencies {
     // 一个在设备上集成TFLite模型的库，用于流行的视觉任务相关的机器学习用例
 //    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.4.0'
     implementation(name: 'tensorflow-lite-task-vision-0.4.0', ext: 'aar')
-
-    implementation 'com.google.mlkit:image-labeling:17.0.5'
     implementation(name: 'tensorflow-lite-task-base-0.4.0', ext: 'aar')
+
+    //ML Kit (To detect faces)
+    implementation 'com.google.mlkit:image-labeling:17.0.5'
+    implementation 'com.google.mlkit:face-detection:16.1.5'
+    implementation 'com.google.android.gms:play-services-mlkit-face-detection:17.0.1'
 }
