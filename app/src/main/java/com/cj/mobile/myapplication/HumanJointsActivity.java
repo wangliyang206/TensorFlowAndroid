@@ -211,13 +211,14 @@ public class HumanJointsActivity extends AppCompatActivity {
                             // 从整个位图（图像）中裁剪出边界框
                             Bitmap mCroppedFace = getCropBitmapByCPU(frame_bmp1, boundingBox);
 
+                            // 翻转图像以匹配人脸
+                            if (flipX)
+                                mCroppedFace = rotateBitmap(mCroppedFace, 0, flipX, false);
+
                             // 显示人脸轮廓
                             displayFacialContours(boundingBox);
 
-
-                            if (flipX)
-                                mCroppedFace = rotateBitmap(mCroppedFace, 0, flipX, false);
-                            // 将获取的人脸缩放到112112，这是模型所需的输入
+                            // 将获取的人脸缩放到112*112，这是模型所需的输入
                             Bitmap scaled = getResizedBitmap(mCroppedFace, 112, 112);
 
                             if (start)
@@ -259,7 +260,12 @@ public class HumanJointsActivity extends AppCompatActivity {
         paint.setColor(Color.GREEN);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(5);
-        canvas.drawRect(boundingBox.left, boundingBox.top, boundingBox.right, boundingBox.bottom, paint);
+        canvas.drawRect(
+                flipX ? (previewView.getWidth() - boundingBox.left) : boundingBox.left,
+                boundingBox.top,
+                flipX ? (previewView.getWidth() - boundingBox.right) : boundingBox.right,
+                boundingBox.bottom,
+                paint);
         paint.setStrokeWidth(2);
     }
 
